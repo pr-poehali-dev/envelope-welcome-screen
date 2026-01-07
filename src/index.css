@@ -154,4 +154,12 @@
       );
     pointer-events: none;
   }
+
+  .envelope-flap {
+    transform-origin: top center;
+  }
+
+  .rotate-x-180 {
+    transform: rotateX(-180deg);
+  }
 }

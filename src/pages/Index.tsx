@@ -8,22 +8,37 @@ export default function Index() {
     setIsEnvelopeOpen(true);
     setTimeout(() => {
       document.getElementById('main-content')?.scrollIntoView({ behavior: 'smooth' });
-    }, 1000);
+    }, 1500);
   };
 
   return (
     <div className="smooth-scroll overflow-x-hidden">
       {/* Hero Section - Envelope */}
       <section 
-        className={`min-h-screen flex items-center justify-center envelope-texture relative ${
-          isEnvelopeOpen ? 'animate-envelope-open' : ''
-        }`}
+        className="min-h-screen flex items-center justify-center envelope-texture relative transition-all duration-1000"
       >
-        <div className="relative">
+        {/* Envelope flap - opens on click */}
+        <div 
+          className={`absolute inset-0 envelope-flap transition-all duration-1000 origin-top ${
+            isEnvelopeOpen ? 'rotate-x-180 opacity-0' : ''
+          }`}
+          style={{ 
+            transformStyle: 'preserve-3d',
+            perspective: '1000px'
+          }}
+        >
+          <div className="absolute inset-0 envelope-texture"></div>
+        </div>
+
+        {/* Wax seal */}
+        <div className="relative z-10">
           <button
             onClick={handleSealClick}
-            className={`wax-seal w-40 h-40 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-accent/50 ${
-              isEnvelopeOpen ? 'animate-seal-break' : ''
+            disabled={isEnvelopeOpen}
+            className={`wax-seal w-40 h-40 rounded-full flex items-center justify-center transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-accent/50 ${
+              isEnvelopeOpen 
+                ? 'scale-0 opacity-0' 
+                : 'hover:scale-110 scale-100 opacity-100'
             }`}
             aria-label="Открыть приглашение"
           >
@@ -31,6 +46,23 @@ export default function Index() {
               Нажмите
             </span>
           </button>
+        </div>
+
+        {/* Content revealed after opening */}
+        <div 
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
+            isEnvelopeOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+          }`}
+        >
+          <div className="text-center px-4">
+            <h1 className="text-5xl md:text-7xl font-bold text-background mb-4">
+              Приглашение
+            </h1>
+            <div className="w-32 h-1 bg-accent mx-auto mb-6"></div>
+            <p className="text-2xl md:text-3xl text-background/90 font-serif">
+              Илья и Анастасия
+            </p>
+          </div>
         </div>
       </section>
 
