@@ -159,6 +159,10 @@
     transform-origin: top center;
   }
 
+  .envelope-flap-open {
+    transform: rotateX(-160deg) translateY(-10px);
+  }
+
   .rotate-x-180 {
     transform: rotateX(-180deg);
   }

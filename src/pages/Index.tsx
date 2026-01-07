@@ -14,54 +14,69 @@ export default function Index() {
   return (
     <div className="smooth-scroll overflow-x-hidden">
       {/* Hero Section - Envelope */}
-      <section 
-        className="min-h-screen flex items-center justify-center envelope-texture relative transition-all duration-1000"
-      >
-        {/* Envelope flap - opens on click */}
-        <div 
-          className={`absolute inset-0 envelope-flap transition-all duration-1000 origin-top ${
-            isEnvelopeOpen ? 'rotate-x-180 opacity-0' : ''
-          }`}
-          style={{ 
-            transformStyle: 'preserve-3d',
-            perspective: '1000px'
-          }}
-        >
-          <div className="absolute inset-0 envelope-texture"></div>
-        </div>
-
-        {/* Wax seal */}
-        <div className="relative z-10">
-          <button
-            onClick={handleSealClick}
-            disabled={isEnvelopeOpen}
-            className={`wax-seal w-40 h-40 rounded-full flex items-center justify-center transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-accent/50 ${
-              isEnvelopeOpen 
-                ? 'scale-0 opacity-0' 
-                : 'hover:scale-110 scale-100 opacity-100'
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
+        {/* Envelope Container */}
+        <div className="relative w-full max-w-2xl aspect-[3/2] mx-4">
+          {/* Envelope Back with Image */}
+          <div 
+            className={`absolute inset-0 rounded-lg shadow-2xl transition-all duration-1000 ${
+              isEnvelopeOpen ? 'scale-95 shadow-xl' : 'scale-100'
             }`}
-            aria-label="Открыть приглашение"
+            style={{
+              backgroundImage: 'url(https://cdn.poehali.dev/projects/ec67d413-4bd8-4408-9a1e-68277a2bd840/files/66283d6b-eac7-47ed-9751-c840505237cd.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
           >
-            <span className="text-accent font-serif text-lg font-semibold tracking-wider">
-              Нажмите
-            </span>
-          </button>
-        </div>
+            {/* Envelope Flap - Top part that opens */}
+            <div 
+              className={`absolute inset-x-0 top-0 h-1/2 transition-all duration-1000 origin-top ${
+                isEnvelopeOpen ? 'envelope-flap-open' : ''
+              }`}
+              style={{
+                backgroundImage: 'url(https://cdn.poehali.dev/projects/ec67d413-4bd8-4408-9a1e-68277a2bd840/files/66283d6b-eac7-47ed-9751-c840505237cd.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
+                transformStyle: 'preserve-3d',
+                boxShadow: isEnvelopeOpen ? '0 10px 30px rgba(0,0,0,0.3)' : 'none',
+                zIndex: 2
+              }}
+            />
 
-        {/* Content revealed after opening */}
-        <div 
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
-            isEnvelopeOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-          }`}
-        >
-          <div className="text-center px-4">
-            <h1 className="text-5xl md:text-7xl font-bold text-background mb-4">
-              Приглашение
-            </h1>
-            <div className="w-32 h-1 bg-accent mx-auto mb-6"></div>
-            <p className="text-2xl md:text-3xl text-background/90 font-serif">
-              Илья и Анастасия
-            </p>
+            {/* Wax Seal */}
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <button
+                onClick={handleSealClick}
+                disabled={isEnvelopeOpen}
+                className={`wax-seal w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-accent/50 ${
+                  isEnvelopeOpen 
+                    ? 'scale-0 opacity-0' 
+                    : 'hover:scale-110 scale-100 opacity-100'
+                }`}
+                aria-label="Открыть приглашение"
+              >
+                <span className="text-accent font-serif text-base md:text-lg font-semibold tracking-wider">
+                  Нажмите
+                </span>
+              </button>
+            </div>
+
+            {/* Content Inside Envelope */}
+            <div 
+              className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 delay-500 ${
+                isEnvelopeOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
+              }`}
+            >
+              <div className="bg-background/95 backdrop-blur-sm p-8 rounded-lg shadow-xl text-center max-w-md mx-4">
+                <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+                  Приглашение
+                </h1>
+                <div className="w-24 h-1 bg-accent mx-auto mb-4"></div>
+                <p className="text-xl md:text-2xl text-foreground font-serif">
+                  Илья и Анастасия
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
