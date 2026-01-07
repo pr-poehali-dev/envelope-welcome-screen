@@ -14,40 +14,51 @@ export default function Index() {
   return (
     <div className="smooth-scroll overflow-x-hidden">
       {/* Hero Section - Envelope */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100">
         {/* Envelope Container */}
-        <div className="relative w-full max-w-2xl aspect-[3/2] mx-4">
-          {/* Envelope Back */}
+        <div className="relative w-full max-w-3xl mx-4" style={{ aspectRatio: '16/10' }}>
+          {/* Envelope Back - Full Image */}
           <div 
-            className={`absolute inset-0 rounded-lg shadow-2xl transition-all duration-1000 envelope-green ${
+            className={`absolute inset-0 shadow-2xl transition-all duration-1000 ${
               isEnvelopeOpen ? 'scale-95 shadow-xl' : 'scale-100'
             }`}
+            style={{
+              backgroundImage: 'url(https://cdn.poehali.dev/projects/ec67d413-4bd8-4408-9a1e-68277a2bd840/files/ae93a557-f19d-4c67-8419-e1fff47ef4e9.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '4px'
+            }}
           >
             {/* Envelope Flap - Top part that opens */}
             <div 
-              className={`absolute inset-x-0 top-0 h-1/2 transition-all duration-1000 origin-top envelope-green-flap ${
+              className={`absolute inset-x-0 top-0 transition-all duration-1000 origin-top ${
                 isEnvelopeOpen ? 'envelope-flap-open' : ''
               }`}
               style={{
+                height: '50%',
+                backgroundImage: 'url(https://cdn.poehali.dev/projects/ec67d413-4bd8-4408-9a1e-68277a2bd840/files/ae93a557-f19d-4c67-8419-e1fff47ef4e9.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
                 transformStyle: 'preserve-3d',
-                boxShadow: isEnvelopeOpen ? '0 10px 30px rgba(0,0,0,0.3)' : 'none',
-                zIndex: 2
+                boxShadow: isEnvelopeOpen ? '0 10px 30px rgba(0,0,0,0.5)' : 'none',
+                zIndex: 2,
+                borderRadius: '4px 4px 0 0'
               }}
             />
 
-            {/* Wax Seal */}
+            {/* Red Wax Seal */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <button
                 onClick={handleSealClick}
                 disabled={isEnvelopeOpen}
-                className={`wax-seal-burgundy w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-red-900/30 ${
+                className={`wax-seal-red w-28 h-28 md:w-36 md:h-36 rounded-full flex items-center justify-center transition-all duration-500 focus:outline-none ${
                   isEnvelopeOpen 
                     ? 'scale-0 opacity-0' 
-                    : 'hover:scale-110 scale-100 opacity-100'
+                    : 'hover:scale-105 scale-100 opacity-100 cursor-pointer'
                 }`}
                 aria-label="Открыть приглашение"
               >
-                <span className="text-amber-100 font-serif text-base md:text-lg font-semibold tracking-wider">
+                <span className="text-red-50 font-serif text-sm md:text-base font-bold tracking-widest uppercase">
                   Нажмите
                 </span>
               </button>
