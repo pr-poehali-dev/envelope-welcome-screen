@@ -6,7 +6,7 @@ export default {
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx}"
 	],
 	prefix: "",
 	theme: {
@@ -84,11 +84,27 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'seal-break': {
+					'0%': { transform: 'scale(1) rotate(0deg)', opacity: '1' },
+					'50%': { transform: 'scale(1.1) rotate(5deg)', opacity: '0.8' },
+					'100%': { transform: 'scale(0.8) rotate(-10deg)', opacity: '0' }
+				},
+				'envelope-open': {
+					'0%': { transform: 'translateY(0)', opacity: '1' },
+					'100%': { transform: 'translateY(-100vh)', opacity: '0' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'seal-break': 'seal-break 0.6s ease-out forwards',
+				'envelope-open': 'envelope-open 1s ease-out forwards',
+				'fade-in': 'fade-in 0.8s ease-out forwards'
 			}
 		}
 	},
